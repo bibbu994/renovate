@@ -1,5 +1,6 @@
 import JSON5 from 'json5';
 import dataFiles from '../../../data-files.generated';
+import { logger } from '../../../logger';
 import * as kubernetesApiVersioning from '../../versioning/kubernetes-api';
 import { Datasource } from '../datasource';
 import type { GetReleasesConfig, ReleaseResult } from '../types';
@@ -26,6 +27,7 @@ export class KubernetesApiDatasource extends Datasource {
       return Promise.resolve({ releases });
     }
 
-    return Promise.resolve(null);
+    logger.debug({ packageName }, 'Unkown API');
+    return Promise.resolve({ releases: [] });
   }
 }

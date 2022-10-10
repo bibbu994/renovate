@@ -5,9 +5,9 @@ const datasource = KubernetesApiDatasource.id;
 
 describe('modules/datasource/kubernetes-api/index', () => {
   describe('getReleases', () => {
-    it('returns null for an unknown Kubernetes API type', async () => {
+    it('returns empty for an unknown Kubernetes API type', async () => {
       const res = await getPkgReleases({ datasource, depName: 'Unknown' });
-      expect(res).toBeNull();
+      expect(res).toEqual({ releases: [] });
     });
 
     it('returns for a known Kubernetes API type', async () => {
@@ -29,7 +29,7 @@ describe('modules/datasource/kubernetes-api/index', () => {
         datasource,
         depName: 'csistoragecapacity',
       });
-      expect(res).toBeNull();
+      expect(res).toEqual({ releases: [] });
     });
   });
 });
